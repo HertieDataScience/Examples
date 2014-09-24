@@ -1,5 +1,5 @@
 ---
-output: html_document
+output: word_document
 ---
 # This is a section heading
 
@@ -11,4 +11,8 @@ library(ggplot2)
 ggplot(mtcars, aes(hp, mpg)) + geom_point()
 ```
 
-Then some more text.
+Then some more text, followed by a table.
+
+```{r echo=FALSE, results='asis'}
+knitr::kable(mtcars)
+```
