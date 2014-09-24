@@ -119,3 +119,6 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+
+# knitr
+*concordance.tex
