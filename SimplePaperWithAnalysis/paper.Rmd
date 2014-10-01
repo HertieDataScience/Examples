@@ -1,0 +1,53 @@
+---
+title: "A Simple Project"
+author: "Christopher Gandrud"
+date: "1 October 2014"
+output:
+  pdf_document:
+    fig_caption: yes
+    number_sections: yes
+  html_document: default
+bibliography:
+- Packages.bib
+- Main.bib
+---
+
+```{r include=FALSE}
+# Set working directory. Change as needed
+setwd('/git_repositories/Examples/SimplePaperWithAnalysis/')
+
+# Load packages and create BibTeX file
+PackagesUsed <- c("ggplot2", "repmis")
+
+# Load PackagesUsed and create .bib BibTeX file
+# Note must have repmis package installed.
+repmis::LoadandCite(PackagesUsed, file = "Packages.bib", install = FALSE)
+```
+
+> Here is an abstract filled with giberish. Lorem ipsum dolor sit amet, habeo 
+mollis et sit, case quaerendum an eos. Eum aliquip habemus te, an vel lorem 
+mandamus dissentiet, omnes ceteros argumentum duo at. Id has graece euismod, in 
+cum eius aeque dolores. Nec vocibus imperdiet ad, sit porro augue feugait id, 
+wisi quaestio splendide no vim.
+
+# Explanation
+
+I gathered data from @Pemstein2010 on countries' democracy level. They call their
+democracy measure the Unified Democracy Score (UDS). I also gathered data from
+the @WorldBank2013 on fertilizer consumption.[^units] Figure 1 shows the mean
+UDS scores over time for all of the countries in their sample plotted against
+the natural logarithm of their fertilizer consumption.
+
+# The Plot
+
+The following is a plot. It was created using the R [@CiteR] ggplot2 [@R-ggplot2].
+
+```{r, echo=FALSE, warning=FALSE, fig.cap='Mean UDS Scores vs. Fertilizer Consumption'}
+# Run source code to create scatter plot
+source("Analysis/ScatterUDS_Fert.R")
+```
+
+
+[^units]: The data is in kilograms per hectare of arable land.
+
+## References
