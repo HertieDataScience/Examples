@@ -1,5 +1,5 @@
 ---
-output: word_document
+output: html_document
 ---
 # This is a section heading
 

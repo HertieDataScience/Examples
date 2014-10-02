@@ -5,6 +5,7 @@
 \section{This is a section heading}
 
 Here is some text. Followed by an R code chunk to create a plot:
+
 << >>=
 library(ggplot2)
 
