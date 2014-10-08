@@ -1,14 +1,13 @@
 ############
 # Create plot of UDS vs. Fertilizer Consumption
 # Christopher Gandrud
-# Updated 1 October 2014
+# Updated 8 October 2014
 ###########
 
 # Load packages
 library(ggplot2)
 
-# Load data
-MainData <- read.csv("Data/MainData.csv")
+# Data from Data/MainData.csv
 
 # Graph FertilizerConsumption and UDS
 # Remove values of FertilizerConsumption less than 0.1

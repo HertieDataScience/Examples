@@ -1,15 +1,17 @@
 ---
 title: "A Simple Project"
 author: "Christopher Gandrud"
-date: "1 October 2014"
+date: "8 October 2014"
 output:
+  html_document:
+    fig_caption: yes
+    number_sections: no
   pdf_document:
     fig_caption: yes
     number_sections: yes
-  html_document: default
 bibliography:
-- Packages.bib
-- Main.bib
+    - Packages.bib
+    - Main.bib
 ---
 
 ```{r include=FALSE}
@@ -22,12 +24,15 @@ PackagesUsed <- c("ggplot2", "repmis")
 # Load PackagesUsed and create .bib BibTeX file
 # Note must have repmis package installed.
 repmis::LoadandCite(PackagesUsed, file = "Packages.bib", install = FALSE)
+
+# Load data
+MainData <- read.csv("Data/MainData.csv")
 ```
 
-> Here is an abstract filled with giberish. Lorem ipsum dolor sit amet, habeo 
-mollis et sit, case quaerendum an eos. Eum aliquip habemus te, an vel lorem 
-mandamus dissentiet, omnes ceteros argumentum duo at. Id has graece euismod, in 
-cum eius aeque dolores. Nec vocibus imperdiet ad, sit porro augue feugait id, 
+> Here is an abstract filled with giberish. Lorem ipsum dolor sit amet, habeo
+mollis et sit, case quaerendum an eos. Eum aliquip habemus te, an vel lorem
+mandamus dissentiet, omnes ceteros argumentum duo at. Id has graece euismod, in
+cum eius aeque dolores. Nec vocibus imperdiet ad, sit porro augue feugait id,
 wisi quaestio splendide no vim.
 
 # Explanation
