@@ -88,7 +88,7 @@ labels <- c('(Intercept)', 'GRE Score', 'GPA Score', '2nd Ranked School',
             '3rd Ranked School', '4th Ranked School')
 stargazer::stargazer(L1, L2, L3, covariate.labels = labels,
                title = 'Logistic Regression Estimates of Grad School Acceptance',
-               type = 'latex', header = FALSE)
+               digits = 2, type = 'latex', header = FALSE)
 ```
 
 ## References
