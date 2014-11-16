@@ -17,7 +17,7 @@ Here are some examples of plots you can create and include in your page.
 
 ## A Map
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
+```{r, warning=FALSE, message=FALSE, results='asis'}
 library(googleVis)
 library(WDI)
 
@@ -40,7 +40,7 @@ print(co2_map, tag = 'chart')
 
 ## A time series graph
 
-```{r echo=FALSE, results='asis'}
+```{r results='asis'}
 library(dygraphs)
 lungDeaths <- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths) %>% dyRangeSelector()
@@ -48,7 +48,7 @@ dygraph(lungDeaths) %>% dyRangeSelector()
 
 ## A network plot
 
-```{r echo=FALSE, results='asis'}
+```{r results='asis'}
 library(networkD3)
 data(MisLinks); data(MisNodes)
 forceNetwork(Links = MisLinks, Nodes = MisNodes,
