@@ -2,7 +2,7 @@
 title: "Example GitHub Pages Document"
 author: "Christopher Gandrud"
 date: "10 November 2014"
-output: 
+output:
     html_document:
         fig_width: 6
         fig_height: 4
@@ -18,21 +18,20 @@ Here are some examples of plots you can create and include in your page.
 ## A Map
 
 ```{r, warning=FALSE, message=FALSE, results='asis'}
-library(googleVis)
 library(WDI)
-
+library(googleVis)
 co2 <- WDI(indicator = 'EN.ATM.CO2E.PC', start = 2010, end = 2010)
 co2 <- co2[, c('iso2c','EN.ATM.CO2E.PC')]
 
 # Clean
-names(co2) <- c('iso2c', 'CO2 Emmissions per Capita')
+names(co2) <- c('iso2c', 'CO2 Emissions per Capita')
 co2[, 2] <- round(log(co2[, 2]), digits = 2)
 
-co2_map <- gvisGeoMap(co2, locationvar = 'iso2c',
-                      numvar = 'CO2 Emmissions per Capita',
+# Plot
+co2_map <- gvisGeoChart(co2, locationvar = 'iso2c',
+                      colorvar = 'CO2 Emissions per Capita',
                       options = list(
-                          colors = '[0xfff7bc, 0xfec44f,
-                                    0xd95f0e]'
+                          colors = "['#fff7bc', '#d95f0e']"
                           ))
 
 print(co2_map, tag = 'chart')
