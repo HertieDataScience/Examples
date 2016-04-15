@@ -1,7 +1,7 @@
 ---
-title: "Example GitHub Pages Document"
+title: "Example Interactive Graphics in GitHub Pages"
 author: "Christopher Gandrud"
-date: "10 November 2014"
+date: "15 April 2016"
 output:
     html_document:
         fig_width: 6
@@ -37,7 +37,69 @@ co2_map <- gvisGeoChart(co2, locationvar = 'iso2c',
 print(co2_map, tag = 'chart')
 ```
 
-## A time series graph
+# A ggplot2 graph with ggplotly
+
+```{r, message=FALSE, warning=FALSE, results='asis'}
+library(devtools)
+library(ggplot2)
+library(plotly)
+
+source_url("http://bit.ly/OTWEGS")
+
+# Create data with no missing values of infant mortality
+InfantNoMiss <- subset(MortalityGDP,
+                           !is.na(InfantMortality))
+
+# Create High/Low Income Variable
+InfantNoMiss$DumMort[InfantNoMiss$InfantMortality
+                     >= 15] <- "high"
+InfantNoMiss$DumMort[InfantNoMiss$InfantMortality
+                     < 15] <- "low"
+
+# Create ggplot2 object
+mort_plot <- ggplot(data = MortalityGDP, aes(x = InfantMortality,
+        y = GDPperCapita)) + geom_point() + 
+        stat_smooth(se = FALSE) +
+        ylab('GDP per Capita') + xlab('Infant Mortality') + 
+        theme_bw(base_size = 9)
+
+# Plot interactive
+ggplotly(mort_plot)
+```
+
+## Plotly native graph
+
+```{r}
+plot_ly(MortalityGDP, x = InfantMortality, y = GDPperCapita,
+        mode = 'markers')
+```
+
+## Simulated probabilities with simGLM and plotly
+
+```{r, message=FALSE, warning=FALSE}
+library(simGLM) # if not installed use devtools::github_install('christophergandrud/simGLM')
+
+# Download data
+URL <- 'http://www.ats.ucla.edu/stat/data/binary.csv'
+Admission <- read.csv(URL)
+Admission$rank <- as.factor(Admission$rank)
+
+# Estimate model
+m2 <- glm(admit ~ gre + gpa + rank, data = Admission, family = 'binomial')
+
+# Create fitted values
+fitted_admit <- expand.grid(gre = seq(220, 800, by = 10), gpa = c(1, 4), 
+                            rank4 = 1)
+
+# Simulate and plot
+sim_gpa <- sim_glm(obj = m2, newdata = fitted_admit, model = 'logit', x_coef = 'gre', 
+                   group_coef = 'gpa') + theme_bw(base_size = 9)
+
+# Plot with plotly
+ggplotly(sim_gpa)
+```
+
+## A time series graph with dynsim
 
 ```{r results='asis'}
 library(dygraphs)
